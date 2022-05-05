@@ -26,10 +26,11 @@ jobs:
           script: |
             console.log('context.payload.repository.name = ', context.payload.repository.name)
             console.log('context.payload.repository.owner = ', context.payload.repository.owner)
-            github.rest.issues.createComment({
+            postPayload = {
               issue_number: context.payload.pull_request.number,
               owner: context.payload.repository.owner.login,
               repo: context.payload.repository.name,
               body: '👋 c18d9e98a85a ' + new Date()
-            })            
-            console.log(context)
+            };
+            console.log('postPayload = ', postPayload)
+            github.rest.issues.createComment(postPayload)
