@@ -24,6 +24,12 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            console.log(context)
             console.log('context.payload.repository.name = ', context.payload.repository.name)
             console.log('context.payload.repository.owner = ', context.payload.repository.owner)
+            github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.payload.repository.owner,
+              repo: context.payload.repository.name,
+              body: '👋 c18d9e98a85a ' + new Date()
+            })            
+            console.log(context)
