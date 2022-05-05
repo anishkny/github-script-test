@@ -26,6 +26,6 @@ jobs:
           script: |
             console.log(context)
             github.rest.issues.createComment({
-              issue_number: context.pull_request.number,
+              issue_number: context.payload.pull_request.number,
               body: '👋 c18d9e98a85a ' + new Date()
             })
